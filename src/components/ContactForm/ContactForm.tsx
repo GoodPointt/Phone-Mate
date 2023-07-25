@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import { nanoid } from 'nanoid';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 
 import { StyledBtn, ErrorMsg, StyledInput } from '../Styled.styled';
@@ -8,33 +7,29 @@ import { INITIAL_VALUES, VALIDATION_SCHEMA } from '../../common/formik';
 import { INewContact, isContactExist } from '../../common/utils';
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
 
-import { addNewContact } from '../../store/contactsSlice';
 import { changeFilter } from '../../store/filterSlice';
+import { addContact } from '../../store/operations';
+import { toggleModal } from '../../store/modalSlice';
 
-interface IContactForm {
-  closeModal: () => void;
-}
-
-export const ContactForm: React.FC<IContactForm> = ({ closeModal }) => {
+export const ContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const contacts: INewContact[] = useAppSelector(
     state => state.contacts.contacts
   );
 
   const handleSubmit = (values: { name: string; number: string }) => {
-    const id = nanoid();
-    const newContact = {
-      id,
-      ...values,
+    const newContact: INewContact = {
+      name: values.name.toString(),
+      number: values.number.toString(),
     };
+
     if (isContactExist(newContact, contacts)) {
       toast.warn(`${newContact.name} is already in contacts.`);
       return;
     }
-    dispatch(addNewContact(newContact));
+    dispatch(addContact(newContact));
     dispatch(changeFilter({ filter: '' }));
-    toast.success(`${newContact.name} succesfully added to your contacts`);
-    closeModal();
+    dispatch(toggleModal());
   };
 
   return (

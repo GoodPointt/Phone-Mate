@@ -1,24 +1,22 @@
 import { StyledList, StyledText } from '../Styled.styled';
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { useAppSelector } from '../../common/hooks';
 import { INewContact } from '../../common/utils';
 
 import { Filter } from '../../components/Filter/Filter';
 import { ContactsItem } from './ContactsItem';
 
-import { changeFilter } from '../../store/filterSlice';
-import { deleteContact } from '../../store/contactsSlice';
-
 export const ContactsList = () => {
   const contacts = useAppSelector(state => state.contacts.contacts);
   const filter = useAppSelector(state => state.filter.filter);
 
-  const dispatch = useAppDispatch();
-
   const filteredContacts: INewContact[] = contacts?.filter(
     contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-      contact.number.includes(filter)
+      contact?.name
+        .toLowerCase()
+        .trim()
+        .includes(filter?.toLowerCase().trim()) ||
+      contact?.number.includes(filter.toLowerCase().trim())
   );
 
   return (
@@ -43,10 +41,6 @@ export const ContactsList = () => {
                 <ContactsItem
                   key={filteredContact.id}
                   contact={filteredContact}
-                  onDelete={() => {
-                    dispatch(deleteContact({ contactId: filteredContact.id }));
-                    dispatch(changeFilter({ filter: '' }));
-                  }}
                 />
               ))}
             </StyledList>
@@ -64,10 +58,10 @@ export const ContactsList = () => {
               <ContactsItem
                 key={contact.id}
                 contact={contact}
-                onDelete={() => {
-                  dispatch(deleteContact({ contactId: contact.id }));
-                  dispatch(changeFilter({ filter: '' }));
-                }}
+                // onDelete={() => {
+                //   dispatch(deleteContact({ contactId: contact.id }));
+                //   dispatch(changeFilter({ filter: '' }));
+                // }}
               />
             ))}
           </StyledList>

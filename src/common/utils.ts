@@ -1,7 +1,8 @@
 export interface INewContact {
-  id: string;
+  id?: string;
   name: string;
   number: string;
+  createdAt?: string;
 }
 
 export type ThandleChange = React.ChangeEvent<HTMLInputElement>;
@@ -11,7 +12,8 @@ export const isContactExist = (
   contactsArr: INewContact[]
 ): Boolean => {
   return contactsArr.find(
-    contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+    contact =>
+      contact.name.toLowerCase().trim() === newContact.name.toLowerCase().trim()
   )
     ? true
     : false;

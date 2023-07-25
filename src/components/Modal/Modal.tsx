@@ -1,18 +1,21 @@
 import { ModalBackdrop, ModalContent } from '../Styled.styled';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useAppDispatch } from '../../common/hooks';
+import { toggleModal } from '../../store/modalSlice';
 
 const modalRoot: HTMLElement | null = document.querySelector('#modal-root')!;
 
 interface IModal {
-  closeModal: () => void;
   children: React.ReactNode;
 }
 
-export const Modal = ({ closeModal, children }: IModal) => {
+export const Modal = ({ children }: IModal) => {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Escape') closeModal();
+      if (e.code === 'Escape') dispatch(toggleModal());
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -22,10 +25,10 @@ export const Modal = ({ closeModal, children }: IModal) => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
     };
-  }, [closeModal]);
+  }, [dispatch]);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget === e.target && closeModal();
+    e.currentTarget === e.target && dispatch(toggleModal());
   };
 
   return createPortal(

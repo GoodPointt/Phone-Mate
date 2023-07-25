@@ -1,21 +1,30 @@
+import { useAppDispatch } from '../../common/hooks';
 import { INewContact } from '../../common/utils';
+import { changeFilter } from '../../store/filterSlice';
+import { removeContact } from '../../store/operations';
 import { StyledItem, StyledItemBtn, StyledText } from '../Styled.styled';
 
 interface IContactsItem {
   contact: INewContact;
-  onDelete: () => void;
 }
 
 export const ContactsItem: React.FC<IContactsItem> = ({
-  contact,
-  onDelete,
+  contact: { id, number, name },
 }) => {
+  const dispatch = useAppDispatch();
   return (
-    <StyledItem key={contact.id}>
+    <StyledItem key={id}>
       <StyledText>
-        {contact.name} {contact.number}
+        {name} {number}
       </StyledText>
-      <StyledItemBtn onClick={onDelete}>&times;</StyledItemBtn>
+      <StyledItemBtn
+        onClick={() => {
+          id && dispatch(removeContact(id));
+          dispatch(changeFilter({ filter: '' }));
+        }}
+      >
+        &times;
+      </StyledItemBtn>
     </StyledItem>
   );
 };

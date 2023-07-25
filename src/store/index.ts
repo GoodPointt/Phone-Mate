@@ -13,15 +13,18 @@ import {
 
 import contactsReducer from './contactsSlice';
 import filterReducer from './filterSlice';
+import modalReducer from './modalSlice';
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
+  isModalOpen: modalReducer,
 });
 
 const persistConfig = {
   key: 'CONTACTS_KEY',
   storage,
+  blacklist: ['contacts'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
