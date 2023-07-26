@@ -4,12 +4,13 @@ import { Formik, Field, ErrorMessage, Form } from 'formik';
 import { StyledBtn, ErrorMsg, StyledInput } from '../Styled.styled';
 
 import { INITIAL_VALUES, VALIDATION_SCHEMA } from '../../common/formik';
-import { INewContact, isContactExist } from '../../common/utils';
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { isContactExist } from '../../common/utils';
+import { INewContact } from '../../common/models';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import { changeFilter } from '../../store/filterSlice';
-import { addContact } from '../../store/operations';
-import { toggleModal } from '../../store/modalSlice';
+import { changeFilter } from '../../redux/filterSlice';
+import { addContact } from '../../redux/operations';
+import { toggleModal } from '../../redux/modalSlice';
 
 export const ContactForm: React.FC = () => {
   const dispatch = useAppDispatch();

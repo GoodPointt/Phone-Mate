@@ -1,23 +1,24 @@
 import { StyledList, StyledText } from '../Styled.styled';
 
-import { useAppSelector } from '../../common/hooks';
-import { INewContact } from '../../common/utils';
+import { useAppSelector } from '../../redux/hooks';
+import { INewContact } from '../../common/models';
 
 import { Filter } from '../../components/Filter/Filter';
-import { ContactsItem } from './ContactsItem';
+import { ContactsItem } from '../Contact/ContactsItem';
 
 export const ContactsList = () => {
   const contacts = useAppSelector(state => state.contacts.contacts);
   const filter = useAppSelector(state => state.filter.filter);
 
-  const filteredContacts: INewContact[] = contacts?.filter(
-    contact =>
-      contact?.name
-        .toLowerCase()
-        .trim()
-        .includes(filter?.toLowerCase().trim()) ||
-      contact?.number.includes(filter.toLowerCase().trim())
-  );
+  const filteredContacts: INewContact[] =
+    contacts?.filter(
+      contact =>
+        contact?.name
+          .toLowerCase()
+          .trim()
+          .includes(filter?.toLowerCase().trim()) ||
+        contact?.number.includes(filter?.toLowerCase().trim())
+    ) || '';
 
   return (
     <>
@@ -32,7 +33,7 @@ export const ContactsList = () => {
       </h2>
 
       {contacts?.length > 0 && <Filter />}
-      {filter ? (
+      {filter !== '' ? (
         <>
           <h4>Search result:</h4>
           {filteredContacts?.length > 0 ? (
@@ -55,14 +56,7 @@ export const ContactsList = () => {
         <>
           <StyledList>
             {contacts?.map(contact => (
-              <ContactsItem
-                key={contact.id}
-                contact={contact}
-                // onDelete={() => {
-                //   dispatch(deleteContact({ contactId: contact.id }));
-                //   dispatch(changeFilter({ filter: '' }));
-                // }}
-              />
+              <ContactsItem key={contact.id} contact={contact} />
             ))}
           </StyledList>
         </>

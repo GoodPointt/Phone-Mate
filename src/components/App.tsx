@@ -6,22 +6,17 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactsList } from './Contacts/ContactsList';
 import { Modal } from './Modal/Modal';
 import { Notification } from './Notification/Notification';
-import { fetchContacts } from '../store/operations';
-import { useAppDispatch, useAppSelector } from '../common/hooks';
+import { fetchContacts } from '../redux/operations';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { Loader } from './Loader/Loader';
 import { onError } from '../common/toasts';
-import { toggleModal } from '../store/modalSlice';
+import { toggleModal } from '../redux/modalSlice';
 
 export const App: React.FC = () => {
-  // const [showModal, setShowModal] = useState(false);
   const { status, error } = useAppSelector(state => state.contacts);
   const { isModalOpen } = useAppSelector(state => state.isModalOpen);
 
   const dispatch = useAppDispatch();
-
-  // const toggleModal = () => {
-  //   setShowModal(!showModal);
-  // };
 
   useEffect(() => {
     dispatch(fetchContacts());

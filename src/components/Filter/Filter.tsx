@@ -1,8 +1,8 @@
 import { StyledInput } from '../Styled.styled';
-import { ThandleChange } from '../../common/utils';
+import { ThandleChange } from '../../common/models';
 
-import { changeFilter } from '../../store/filterSlice';
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { changeFilter } from '../../redux/filterSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export const Filter = () => {
   const filter: string = useAppSelector(state => state.filter.filter);

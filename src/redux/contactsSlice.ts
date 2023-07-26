@@ -1,7 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { INewContact } from '../common/utils';
-import { addContact, fetchContacts, removeContact } from './operations';
-import { onAddSucces, onRemoveSucces } from '../common/toasts';
+import { INewContact } from '../common/models';
+import {
+  addContact,
+  fetchContacts,
+  removeContact,
+  toggleFavorite,
+} from './operations';
+import {
+  onAddSucces,
+  onFavoriteSucces,
+  onRemoveSucces,
+} from '../common/toasts';
 
 interface ContactsState {
   contacts: INewContact[];
@@ -69,6 +78,28 @@ const contactsSlice = createSlice({
       onRemoveSucces(action.payload.name);
     },
     [removeContact.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.status = 'rejected';
+      state.error = action.payload;
+    },
+    [toggleFavorite.pending.type]: state => {
+      state.status = 'loading';
+      state.error = null;
+    },
+    [toggleFavorite.fulfilled.type]: (
+      state,
+      action: PayloadAction<INewContact>
+    ) => {
+      state.status = 'resolved';
+      state.error = null;
+      state.contacts = state.contacts.map(contact => {
+        if (contact.id === action.payload.id) {
+          contact.isFavorite = !contact.isFavorite;
+          onFavoriteSucces(contact.name, contact.isFavorite);
+        }
+        return contact;
+      });
+    },
+    [toggleFavorite.rejected.type]: (state, action: PayloadAction<string>) => {
       state.status = 'rejected';
       state.error = action.payload;
     },

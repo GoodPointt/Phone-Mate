@@ -10,3 +10,9 @@ export const onRemoveSucces = (contactName: string) => {
 export const onError = (errorMsg: string) => {
   return toast.error(`Opps! Some error occured😒 ${errorMsg}`);
 };
+
+export const onFavoriteSucces = (contactName: string, isFavorite: boolean) => {
+  isFavorite
+    ? toast.success(`${contactName} was added to your favorits`)
+    : toast.info(`${contactName} was not in your favorits any more`);
+};
