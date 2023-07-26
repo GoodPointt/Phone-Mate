@@ -68,111 +68,149 @@ form {
   z-index: 1200;
 }
 
-.card {
+/* TEMPERARY */
+
+.go-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.go-to-top-button.visible {
+  opacity: 1;
+}
+
+.user-box {
+  position: relative;
+  width: 200px;
+}
+
+.user-box .submit__lable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.submit-btn {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
   overflow: hidden;
-  width: 320px;
-  height: 130px;
-  border-radius: 1em;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background-color: #0e0e0e;
-  box-shadow: 0 0 2rem rgb(82 80 80 / 80%);
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  padding: 5px;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
 }
 
-.card:hover {
-  rotate: 1deg;
-  scale: 1.05;
+.submit-btn:hover {
+  background: #8deb92;
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #61dd67, 0 0 25px #8ce690, 0 0 50px #5dba61,
+    0 0 100px #78c97d;
 }
 
-.card,
-.caller {
-  display: flex;
-  align-items: center;
+.submit-btn span {
+  position: absolute;
+  display: block;
 }
 
-.imgBox {
-  width: 6em;
-  height: 6em;
-  box-shadow: 0px 0.25em 1rem rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  justify-content: center;
-}
-
-.imgBox svg {
-  width: 100%;
-  height: 100%;
-}
-
-.name {
-  width: 100%;
-  text-align: center;
-  font-weight: 900;
-  transition: 1s ease-in-out;
-}
-
-.name .p1 {
-  font-size: 1.2em;
-}
-
-.name .p2 {
-  font-size: 0.8em;
-  color: rgb(50, 146, 255);
-}
-
-.caller {
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.callerBtn {
-  /* fill: #080808; */
-  width: 2em;
-  height: 2em;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* color: #fff; */
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: 0.1s ease-in-out;
-  animation: animate linear infinite 2s;
-}
-
-.callerBtn:hover {
-  scale: 1.1;
-}
-
-#pick {
-  background-color: rgb(47, 153, 61);
-  box-shadow: 0px 3px 10px rgb(2, 253, 115);
-}
-
-#end {
-  background-color: #863232;
-  box-shadow: 0px 3px 10px #f70000;
-  color: #080808;
-  /* font-size: 1.6em; */
-}
-
-#end svg {
-  rotate: 135deg;
-}
-
-@keyframes animate {
+@keyframes btn-anim1 {
   0% {
-    transform: translateY(0px);
+    left: -100%;
   }
 
-  50% {
-    transform: translateY(3px) rotate(-10deg);
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.submit-btn span:nth-child(1) {
+  bottom: 2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03f40f);
+  animation: btn-anim1 2s linear infinite;
+}
+
+/* GoTop */
+
+.Btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(#44ea76, #39fad7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+}
+
+.Btn.visible {
+  opacity: 1;
+}
+
+.arrow path {
+  fill: white;
+}
+
+.text {
+  font-size: 0.7em;
+  width: 100px;
+  position: absolute;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -18px;
+  opacity: 0;
+  transition-duration: 0.7s;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  transition-duration: 0.7s;
+}
+
+.Btn:hover .arrow {
+  animation: slide-in-bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
   }
 
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
+    opacity: 1;
   }
 }

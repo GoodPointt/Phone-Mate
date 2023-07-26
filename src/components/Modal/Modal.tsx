@@ -1,4 +1,4 @@
-import { ModalBackdrop, ModalContent } from '../Styled.styled';
+import { ModalBackdrop, ModalContent } from './Modal.styled';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch } from '../../redux/hooks';

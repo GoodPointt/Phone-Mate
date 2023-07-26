@@ -14,15 +14,17 @@ import {
 import contactsReducer from './contactsSlice';
 import filterReducer from './filterSlice';
 import modalReducer from './modalSlice';
+import sortReducer from './sortSlice';
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
   isModalOpen: modalReducer,
+  sort: sortReducer,
 });
 
 const persistConfig = {
-  key: 'CONTACTS_KEY',
+  key: 'PHONE_MATE_KEY',
   storage,
   blacklist: ['contacts'],
 };

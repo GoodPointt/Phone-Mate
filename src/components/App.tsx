@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { StyledBtn, StyledContainer, StyledItemBtn } from './Styled.styled';
+import { StyledBtn, StyledCloseBtn, StyledContainer } from './Styled.styled';
 import { ContactForm } from './ContactForm/ContactForm';
-import { ContactsList } from './Contacts/ContactsList';
+import { ContactsList } from './ContactsList/ContactsList';
 import { Modal } from './Modal/Modal';
 import { Notification } from './Notification/Notification';
 import { fetchContacts } from '../redux/operations';
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { Loader } from './Loader/Loader';
 import { onError } from '../common/toasts';
 import { toggleModal } from '../redux/modalSlice';
+import { GoTop } from './GoTop/GoTop';
 
 export const App: React.FC = () => {
   const { status, error } = useAppSelector(state => state.contacts);
@@ -24,7 +25,7 @@ export const App: React.FC = () => {
 
   return (
     <StyledContainer>
-      <h1>Phonebook</h1>
+      <h1>Phone Mate</h1>
       <StyledBtn
         className="add"
         type="button"
@@ -40,11 +41,14 @@ export const App: React.FC = () => {
           <h3>{error}</h3>
         </>
       )}
+      <GoTop />
       {isModalOpen && (
         <Modal>
-          <StyledItemBtn type="button" onClick={() => dispatch(toggleModal())}>
-            &times;
-          </StyledItemBtn>
+          <StyledCloseBtn type="button" onClick={() => dispatch(toggleModal())}>
+            <span className="X"></span>
+            <span className="Y"></span>
+            <div className="close">Close</div>
+          </StyledCloseBtn>
           <ContactForm />
         </Modal>
       )}

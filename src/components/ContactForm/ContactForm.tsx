@@ -1,7 +1,5 @@
 import { toast } from 'react-toastify';
-import { Formik, Field, ErrorMessage, Form } from 'formik';
-
-import { StyledBtn, ErrorMsg, StyledInput } from '../Styled.styled';
+import { Formik, ErrorMessage, Form } from 'formik';
 
 import { INITIAL_VALUES, VALIDATION_SCHEMA } from '../../common/formik';
 import { isContactExist } from '../../common/utils';
@@ -11,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { changeFilter } from '../../redux/filterSlice';
 import { addContact } from '../../redux/operations';
 import { toggleModal } from '../../redux/modalSlice';
+import { ErrorMsg, StyledFormInput } from './ContactForm.styled';
 
 export const ContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -40,24 +39,23 @@ export const ContactForm: React.FC = () => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <Field
-          type="text"
-          name="name"
-          as={StyledInput}
-          placeholder="Enter name..."
-          autoFocus
-        />
-        <ErrorMessage name="name" component={ErrorMsg} />
+        <div className="user-box">
+          <StyledFormInput type="text" name="name" autoFocus />
+          <label className="submit__lable">Username</label>
+          <ErrorMessage name="name" component={ErrorMsg} />
+        </div>
 
-        <Field
-          type="tel"
-          name="number"
-          as={StyledInput}
-          placeholder="Enter phone..."
-        />
-        <ErrorMessage name="number" component={ErrorMsg} />
+        <div className="user-box">
+          <StyledFormInput type="tel" name="number" />
+          <ErrorMessage name="number" component={ErrorMsg} />
+          <label className="submit__lable">Phone number</label>
+        </div>
 
-        <StyledBtn type="submit">Add contact</StyledBtn>
+        <center>
+          <button className="submit-btn" type="submit">
+            Add contact<span></span>
+          </button>
+        </center>
       </Form>
     </Formik>
   );
