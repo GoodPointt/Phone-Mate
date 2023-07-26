@@ -4,6 +4,7 @@ import { Formik, ErrorMessage, Form } from 'formik';
 import { INITIAL_VALUES, VALIDATION_SCHEMA } from '../../common/formik';
 import { isContactExist } from '../../common/utils';
 import { INewContact } from '../../common/models';
+
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { changeFilter } from '../../redux/filterSlice';
@@ -22,7 +23,6 @@ export const ContactForm: React.FC = () => {
       name: values.name.toString(),
       number: values.number.toString(),
     };
-
     if (isContactExist(newContact, contacts)) {
       toast.warn(`${newContact.name} is already in contacts.`);
       return;

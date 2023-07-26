@@ -10,14 +10,14 @@ export const SortTabs = () => {
     <StyledSortTabs>
       <button
         id="btn"
-        className={sort === 'all' && 'active'}
+        className={sort === 'all' ? 'active' : ''}
         onClick={() => dispatch(setSortType('all'))}
       >
         All
       </button>
       <button
         id="btn"
-        className={sort === 'favorite' && 'active'}
+        className={sort === 'favorite' ? 'active' : ''}
         onClick={() => dispatch(setSortType('favorite'))}
       >
         Favorites

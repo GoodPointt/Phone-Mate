@@ -32,7 +32,7 @@ export const GoTop = () => {
       onClick={scrollToTop}
     >
       <GoTopSvg />
-      <p class="text">Back to Top</p>
+      <p className="text">Back to Top</p>
     </button>
   );
 };

@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Field } from 'formik';
 
 export const ErrorMsg = styled.p`
-  /* position: relative; */
   font-style: italic;
   color: red;
   font-size: 10px;
@@ -19,9 +18,14 @@ export const StyledFormInput = styled(Field)`
   outline: none;
   background: transparent;
 
-  &:focus ~ .submit__lable,
-  &:valid ~ .submit__lable,
-  &:not(:empty) {
+  &:focus ~ .submit__lable {
+    top: -20px;
+    left: 0;
+    color: #bdb8b8;
+    font-size: 12px;
+  }
+
+  &:valid ~ .submit__lable {
     top: -20px;
     left: 0;
     color: #bdb8b8;
