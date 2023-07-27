@@ -38,7 +38,7 @@ export const App: React.FC = () => {
       {status === 'rejected' && error && onError(error) && (
         <>
           <h2>Opps! some error occured😒 Try again later.</h2>
-          <h3>{error}</h3>
+          <h4>{error}</h4>
         </>
       )}
       <GoTop />
