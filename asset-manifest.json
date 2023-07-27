@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-07-phonebook/static/css/main.631594bb.css",
-    "main.js": "/goit-react-hw-07-phonebook/static/js/main.bab4f96c.js",
-    "index.html": "/goit-react-hw-07-phonebook/index.html",
-    "static/media/call.svg": "/goit-react-hw-07-phonebook/static/media/call.d4380fea8d162376f91e24424d84b76b.svg",
-    "static/media/favorite.svg": "/goit-react-hw-07-phonebook/static/media/favorite.5a8de7249c824ec6c0d883e3d6c86f6d.svg",
-    "static/media/go-top.svg": "/goit-react-hw-07-phonebook/static/media/go-top.13c5dbd675d88af0f05546c16c89274f.svg",
-    "main.631594bb.css.map": "/goit-react-hw-07-phonebook/static/css/main.631594bb.css.map",
-    "main.bab4f96c.js.map": "/goit-react-hw-07-phonebook/static/js/main.bab4f96c.js.map"
+    "main.css": "/Phone-Mate/static/css/main.631594bb.css",
+    "main.js": "/Phone-Mate/static/js/main.f5bb31f8.js",
+    "index.html": "/Phone-Mate/index.html",
+    "static/media/call.svg": "/Phone-Mate/static/media/call.d4380fea8d162376f91e24424d84b76b.svg",
+    "static/media/favorite.svg": "/Phone-Mate/static/media/favorite.5a8de7249c824ec6c0d883e3d6c86f6d.svg",
+    "static/media/go-top.svg": "/Phone-Mate/static/media/go-top.13c5dbd675d88af0f05546c16c89274f.svg",
+    "main.631594bb.css.map": "/Phone-Mate/static/css/main.631594bb.css.map",
+    "main.f5bb31f8.js.map": "/Phone-Mate/static/js/main.f5bb31f8.js.map"
   },
   "entrypoints": [
     "static/css/main.631594bb.css",
-    "static/js/main.bab4f96c.js"
+    "static/js/main.f5bb31f8.js"
   ]
 }
